@@ -33,7 +33,7 @@ jobs:
       run: |
         git diff --exit-code
 
-  build-2-89-0:
+  build-2-89:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -64,9 +64,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-2.89.0-${{ github.sha }}
+        key: ${{ runner.os }}-buildx-2.89-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-2.89.0-
+          ${{ runner.os }}-buildx-2.89-
           ${{ runner.os }}-buildx-
 
     - name: Login to Docker Hub registry
@@ -79,7 +79,7 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
-      id: prep-2-89-0
+      id: prep-2-89
       run: |
         set -e
 
@@ -92,7 +92,7 @@ jobs:
         # Generate docker image tags
         # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
         # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
-        VARIANT="2.89.0"
+        VARIANT="2.89"
         REF_VARIANT="${REF}-${VARIANT}"
         REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
 
@@ -102,45 +102,45 @@ jobs:
         echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
         echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
 
-    - name: 2.89.0 - Build (PRs)
+    - name: 2.89 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.89.0
+        context: variants/2.89
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: false
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.89.0 - Build and push (master)
+    - name: 2.89 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.89.0
+        context: variants/2.89
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.89.0 - Build and push (release)
+    - name: 2.89 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.89.0
+        context: variants/2.89
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-89-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-89.outputs.REF_SHA_VARIANT }}
           ${{ github.repository }}:latest
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
@@ -153,7 +153,7 @@ jobs:
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  build-2-87-0:
+  build-2-87:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -184,9 +184,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-2.87.0-${{ github.sha }}
+        key: ${{ runner.os }}-buildx-2.87-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-2.87.0-
+          ${{ runner.os }}-buildx-2.87-
           ${{ runner.os }}-buildx-
 
     - name: Login to Docker Hub registry
@@ -199,7 +199,7 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
-      id: prep-2-87-0
+      id: prep-2-87
       run: |
         set -e
 
@@ -212,7 +212,7 @@ jobs:
         # Generate docker image tags
         # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
         # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
-        VARIANT="2.87.0"
+        VARIANT="2.87"
         REF_VARIANT="${REF}-${VARIANT}"
         REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
 
@@ -222,45 +222,45 @@ jobs:
         echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
         echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
 
-    - name: 2.87.0 - Build (PRs)
+    - name: 2.87 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.87.0
+        context: variants/2.87
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: false
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.87.0 - Build and push (master)
+    - name: 2.87 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.87.0
+        context: variants/2.87
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.87.0 - Build and push (release)
+    - name: 2.87 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.87.0
+        context: variants/2.87
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-87-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-87.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
@@ -272,7 +272,7 @@ jobs:
         rm -rf /tmp/.buildx-cache
         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  build-2-86-0:
+  build-2-86:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -303,9 +303,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
-        key: ${{ runner.os }}-buildx-2.86.0-${{ github.sha }}
+        key: ${{ runner.os }}-buildx-2.86-${{ github.sha }}
         restore-keys: |
-          ${{ runner.os }}-buildx-2.86.0-
+          ${{ runner.os }}-buildx-2.86-
           ${{ runner.os }}-buildx-
 
     - name: Login to Docker Hub registry
@@ -318,7 +318,7 @@ jobs:
 
     # This step generates the docker tags
     - name: Prepare
-      id: prep-2-86-0
+      id: prep-2-86
       run: |
         set -e
 
@@ -331,7 +331,7 @@ jobs:
         # Generate docker image tags
         # E.g. 'v0.0.0-<variant>' and 'v0.0.0-abc0123-<variant>'
         # E.g. 'master-<variant>' and 'master-abc0123-<variant>'
-        VARIANT="2.86.0"
+        VARIANT="2.86"
         REF_VARIANT="${REF}-${VARIANT}"
         REF_SHA_VARIANT="${REF}-${SHA}-${VARIANT}"
 
@@ -341,45 +341,45 @@ jobs:
         echo "REF_VARIANT=$REF_VARIANT" >> $GITHUB_OUTPUT
         echo "REF_SHA_VARIANT=$REF_SHA_VARIANT" >> $GITHUB_OUTPUT
 
-    - name: 2.86.0 - Build (PRs)
+    - name: 2.86 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.86.0
+        context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: false
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.86.0 - Build and push (master)
+    - name: 2.86 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.86.0
+        context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
-    - name: 2.86.0 - Build and push (release)
+    - name: 2.86 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
       uses: docker/build-push-action@v3
       with:
-        context: variants/2.86.0
+        context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
         push: true
         tags: |
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_VARIANT }}
-          ${{ github.repository }}:${{ steps.prep-2-86-0.outputs.REF_SHA_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_VARIANT }}
+          ${{ github.repository }}:${{ steps.prep-2-86.outputs.REF_SHA_VARIANT }}
         cache-from: type=local,src=/tmp/.buildx-cache
         cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
@@ -393,9 +393,9 @@ jobs:
 
   update-draft-release:
     needs:
-      - build-2-89-0
-      - build-2-87-0
-      - build-2-86-0
+      - build-2-89
+      - build-2-87
+      - build-2-86
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
@@ -409,9 +409,9 @@ jobs:
 
   publish-draft-release:
     needs:
-      - build-2-89-0
-      - build-2-87-0
-      - build-2-86-0
+      - build-2-89
+      - build-2-87
+      - build-2-86
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
@@ -427,9 +427,9 @@ jobs:
 
   update-dockerhub-description:
     needs:
-      - build-2-89-0
-      - build-2-87-0
-      - build-2-86-0
+      - build-2-89
+      - build-2-87
+      - build-2-86
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
