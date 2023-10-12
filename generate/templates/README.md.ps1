@@ -5,7 +5,7 @@
 [![github-release](https://img.shields.io/github/v/release/theohbrothers/docker-dnsmasq?style=flat-square)](https://github.com/theohbrothers/docker-dnsmasq/releases/)
 [![docker-image-size](https://img.shields.io/docker/image-size/theohbrothers/docker-dnsmasq/latest)](https://hub.docker.com/r/theohbrothers/docker-dnsmasq)
 
-Dockerized ``dnsmasq``.
+Dockerized [dnsmasq](https://dnsmasq.org/).
 
 ## Tags
 
