@@ -1,5 +1,32 @@
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(
+    @{
+        package = 'dnsmasq'
+        package_version = '2.89.0'
+        distro = 'alpine'
+        distro_version = '3.18'
+        subvariants = @(
+            @{ components = @() }
+        )
+    }
+    @{
+        package = 'dnsmasq'
+        package_version = '2.87.0'
+        distro = 'alpine'
+        distro_version = '3.17'
+        subvariants = @(
+            @{ components = @() }
+        )
+    }
+    @{
+        package = 'dnsmasq'
+        package_version = '2.86.0'
+        distro = 'alpine'
+        distro_version = '3.15'
+        subvariants = @(
+            @{ components = @() }
+        )
+    }
 )
 $VARIANTS = @(
     foreach ($variant in $VARIANTS_MATRIX){
