@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Display system info (linux)
       run: |
@@ -61,7 +61,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-2.90-${{ github.sha }}
@@ -105,7 +105,7 @@ jobs:
     - name: 2.90 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.90
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
@@ -119,7 +119,7 @@ jobs:
     - name: 2.90 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.90
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
@@ -132,7 +132,7 @@ jobs:
 
     - name: 2.90 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.90
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
@@ -157,7 +157,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Display system info (linux)
       run: |
@@ -181,7 +181,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Cache Docker layers
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: /tmp/.buildx-cache
         key: ${{ runner.os }}-buildx-2.86-${{ github.sha }}
@@ -225,7 +225,7 @@ jobs:
     - name: 2.86 - Build (PRs)
       # Run only on pull requests
       if: github.event_name == 'pull_request'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
@@ -239,7 +239,7 @@ jobs:
     - name: 2.86 - Build and push (master)
       # Run only on master
       if: github.ref == 'refs/heads/master'
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
@@ -252,7 +252,7 @@ jobs:
 
     - name: 2.86 - Build and push (release)
       if: startsWith(github.ref, 'refs/tags/')
-      uses: docker/build-push-action@v3
+      uses: docker/build-push-action@v5
       with:
         context: variants/2.86
         platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/s390x
