@@ -13,7 +13,7 @@ $local:VARIANTS_MATRIX = @(
         package = 'dnsmasq'
         package_version = '2.86'
         distro = 'alpine'
-        distro_version = '3.15'
+        distro_version = '3.16'
         subvariants = @(
             @{ components = @() }
         )
