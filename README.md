@@ -1,6 +1,6 @@
 # docker-dnsmasq
 
-[![github-actions](https://github.com/theohbrothers/docker-dnsmasq/workflows/ci-master-pr/badge.svg)](https://github.com/theohbrothers/docker-dnsmasq/actions)
+[![github-actions](https://github.com/theohbrothers/docker-dnsmasq/actions/workflows/ci-master-pr.yml/badge.svg?branch=master)](https://github.com/theohbrothers/docker-dnsmasq/actions/workflows/ci-master-pr.yml)
 [![github-release](https://img.shields.io/github/v/release/theohbrothers/docker-dnsmasq?style=flat-square)](https://github.com/theohbrothers/docker-dnsmasq/releases/)
 [![docker-image-size](https://img.shields.io/docker/image-size/theohbrothers/docker-dnsmasq/latest)](https://hub.docker.com/r/theohbrothers/docker-dnsmasq)
 
