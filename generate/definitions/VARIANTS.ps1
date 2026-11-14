@@ -2,6 +2,24 @@
 $local:VARIANTS_MATRIX = @(
     @{
         package = 'dnsmasq'
+        package_version = '2.92'
+        distro = 'alpine'
+        distro_version = '3.24'
+        subvariants = @(
+            @{ components = @() }
+        )
+    }
+    @{
+        package = 'dnsmasq'
+        package_version = '2.91'
+        distro = 'alpine'
+        distro_version = '3.23'
+        subvariants = @(
+            @{ components = @() }
+        )
+    }
+    @{
+        package = 'dnsmasq'
         package_version = '2.90'
         distro = 'alpine'
         distro_version = '3.21'
