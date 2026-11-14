@@ -10,7 +10,9 @@ Dockerized [dnsmasq](https://dnsmasq.org/).
 
 | Tag | Dockerfile Build Context |
 |:-------:|:---------:|
-| `:2.90`, `:latest` | [View](variants/2.90) |
+| `:2.92`, `:latest` | [View](variants/2.92) |
+| `:2.91` | [View](variants/2.91) |
+| `:2.90` | [View](variants/2.90) |
 | `:2.86` | [View](variants/2.86) |
 
 ## Development
